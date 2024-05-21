@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList, TextInput, Button, TouchableOpacity } from 'react-native';
 import axios from 'axios';
+import Header from '../components/Header';
 
 
 export default function Screen1({ navigation }) {
@@ -41,7 +42,7 @@ export default function Screen1({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={{ fontSize: 25, fontWeight: 'bold' }}>Danh sách ứng viên </Text>
+                <Header>Danh sách ứng viên</Header>
                 <TouchableOpacity onPress={() => navigation.navigate('Screen3')}>
                     <Text style={{ fontSize: 25, fontWeight: 'bold' }}>+</Text>
                 </TouchableOpacity>

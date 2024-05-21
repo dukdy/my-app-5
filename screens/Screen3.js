@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, Text, StyleSheet } from 'react-native';
+import { View, TextInput, Button, Alert, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import axios from 'axios';
+import Title from '../components/Title';
+import Header from '../components/Header';
+import BackButton from '../components/BackButton';
 
 export default function Screen3({ navigation }) {
     const [name, setName] = useState('');
@@ -47,57 +50,114 @@ export default function Screen3({ navigation }) {
     };
 
     return (
-        <View style={{ padding: 10, flex: 1 }}>
-            <View style={styles.header}>
-                <Text style={{ fontSize: 25, fontWeight: 'bold' }}>Thêm ứng viên</Text>
-            </View>
-            <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Tên ứng viên</Text>
-            <TextInput
-                placeholder="Tên ứng viên"
-                value={name}
-                onChangeText={setName}
-                style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5 }}
-            />
-            <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Mã số ứng viên</Text>
-            <TextInput
-                placeholder="Mã số ứng viên"
-                value={id}
-                onChangeText={setId}
-                style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5 }}
-            />
-            <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Email</Text>
-            <TextInput
-                placeholder="Email"
-                value={email}
-                onChangeText={setEmail}
-                style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5 }}
-            />
-            <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Mô tả kinh nghiệm</Text>
-            <TextInput
-                placeholder="Mô tả kinh nghiệm"
-                value={describe}
-                onChangeText={setDescribe}
-                multiline={true}
-                style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5, height: 150 }}
-            />
-            <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Địa chỉ</Text>
-            <TextInput
-                placeholder="Địa chỉ"
-                value={address}
-                onChangeText={setAddress}
-                multiline={true}
-                style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5, height: 100 }}
-            />
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <View>
-                    <Button title="Hủy bỏ" onPress={confirmCancel} />
+        <KeyboardAvoidingView 
+        behavior={Platform.OS === 'android' ? 'padding': 'height'}
+        style = {{flex: 1}}
+        >
+            <View style={{ padding: 10, flex: 1 }}>
+                <View style={styles.header}>
+                    <BackButton goBack={navigation.goBack}/>
+                    <Header>Thêm ứng viên</Header>
                 </View>
-                <View>
-                    <Button title="Lưu lại" onPress={saveCandidate} />
+                <Title>Tên ứng viên:</Title>
+                <TextInput
+                    placeholder="Tên ứng viên"
+                    value={name}
+                    onChangeText={setName}
+                    style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5 }}
+                />
+                <Title>Mã số ứng viên:</Title>
+                <TextInput
+                    placeholder="Mã số ứng viên"
+                    value={id}
+                    onChangeText={setId}
+                    style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5 }}
+                />
+                <Title>Email:</Title>
+                <TextInput
+                    placeholder="Email"
+                    value={email}
+                    onChangeText={setEmail}
+                    style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5 }}
+                />
+                <Title>Mô tả kinh nghiệm:</Title>
+                <TextInput
+                    placeholder="Mô tả kinh nghiệm"
+                    value={describe}
+                    onChangeText={setDescribe}
+                    multiline={true}
+                    style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5, height: 150 }}
+                />
+                <Title>Địa chỉ:</Title>
+                <TextInput
+                    placeholder="Địa chỉ"
+                    value={address}
+                    onChangeText={setAddress}
+                    multiline={true}
+                    style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5, height: 100 }}
+                />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View>
+                        <Button title="Hủy bỏ" onPress={confirmCancel} />
+                    </View>
+                    <View>
+                        <Button title="Lưu lại" onPress={saveCandidate} />
+                    </View>
                 </View>
-            </View>
 
-        </View>
+            </View>
+        </KeyboardAvoidingView>
+        // <View style={{ padding: 10, flex: 1 }}>
+        //     <View style={styles.header}>
+        //         <Header>Thêm ứng viên</Header>
+        //     </View>
+        //     <Title>Tên ứng viên:</Title>
+        //     <TextInput
+        //         placeholder="Tên ứng viên"
+        //         value={name}
+        //         onChangeText={setName}
+        //         style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5 }}
+        //     />
+        //     <Title>Mã số ứng viên:</Title>
+        //     <TextInput
+        //         placeholder="Mã số ứng viên"
+        //         value={id}
+        //         onChangeText={setId}
+        //         style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5 }}
+        //     />
+        //     <Title>Email:</Title>
+        //     <TextInput
+        //         placeholder="Email"
+        //         value={email}
+        //         onChangeText={setEmail}
+        //         style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5 }}
+        //     />
+        //     <Title>Mô tả kinh nghiệm:</Title>
+        //     <TextInput
+        //         placeholder="Mô tả kinh nghiệm"
+        //         value={describe}
+        //         onChangeText={setDescribe}
+        //         multiline={true}
+        //         style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5, height: 150 }}
+        //     />
+        //     <Title>Địa chỉ:</Title>
+        //     <TextInput
+        //         placeholder="Địa chỉ"
+        //         value={address}
+        //         onChangeText={setAddress}
+        //         multiline={true}
+        //         style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5, height: 100 }}
+        //     />
+        //     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        //         <View>
+        //             <Button title="Hủy bỏ" onPress={confirmCancel} />
+        //         </View>
+        //         <View>
+        //             <Button title="Lưu lại" onPress={saveCandidate} />
+        //         </View>
+        //     </View>
+
+        // </View>
     );
 };
 

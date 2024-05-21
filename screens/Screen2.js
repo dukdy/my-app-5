@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity } from 'react-native';
 import axios from 'axios';
+import Title from '../components/Title';
+import Header from '../components/Header';
+import BackButton from '../components/BackButton';
 
 
 export default function Screen2({ route, navigation }) {
@@ -8,6 +11,7 @@ export default function Screen2({ route, navigation }) {
 
     const { id } = route.params;
     const [candidate, setCandidate] = useState(null);
+
 
     useEffect(() => {
         loadCandidate();
@@ -38,41 +42,42 @@ export default function Screen2({ route, navigation }) {
         ]);
     };
 
-    if (!candidate) return <Text style = {{marginTop: 200, padding: 150, fontSize: 20, fontWeight: 'bold'}}>Loading...</Text>;
+    if (!candidate) return <Text style={{ marginTop: 200, padding: 150, fontSize: 20, fontWeight: 'bold' }}>Loading...</Text>;
 
     return (
 
         <>
             <View style={styles.header}>
-                <Text style={{ fontSize: 25, fontWeight: 'bold' }}>Thông tin chi tiết ứng viên</Text>
+                <BackButton goBack={navigation.goBack}/>
+                <Header>Thông tin chi tiết ứng viên</Header>
             </View>
             <View style={styles.container}>
                 <View style={{ marginVertical: 10 }}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Tên ứng viên: </Text>
+                    <Title>Tên ứng viên:</Title>
                     <View style={styles.details}>
                         <Text>{candidate.name}</Text>
                     </View>
                 </View>
                 <View style={{ marginVertical: 10 }}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Tên ứng viên: </Text>
+                    <Title>Mã số ứng viên:</Title>
                     <View style={styles.details}>
-                        <Text>{candidate.name}</Text>
+                        <Text>{candidate.code}</Text>
                     </View>
                 </View>
                 <View style={{ marginVertical: 10 }}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Kinh nghiệm: </Text>
-                    <View style={{ borderBottomWidth: 1, borderBlockColor: 'black', height: 80, marginTop: 5 }}>
-                        <Text>{candidate.describe}</Text>
+                    <Title>Kinh nghiệm:</Title>
+                    <View style={styles.details}>
+                        <Text >{candidate.describe}</Text>
                     </View>
                 </View>
                 <View style={{ marginVertical: 10 }}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Email: </Text>
+                    <Title>Email:</Title>
                     <View style={styles.details}>
                         <Text>{candidate.email}</Text>
                     </View>
                 </View>
                 <View style={{ marginVertical: 10 }}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Địa chỉ: </Text>
+                    <Title>Địa chỉ:</Title>
                     <View style={styles.details}>
                         <Text>{candidate.address}</Text>
                     </View>
@@ -110,7 +115,7 @@ const styles = StyleSheet.create({
     details: {
         borderBottomWidth: 1,
         borderBlockColor: 'black',
-        height: 30,
+        minHeight: 30,
         marginTop: 5
     }
 })
