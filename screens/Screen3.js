@@ -7,14 +7,14 @@ import BackButton from '../components/BackButton';
 
 export default function Screen3({ navigation }) {
     const [name, setName] = useState('');
-    const [id, setId] = useState('');
+    const [code, setCode] = useState('');
     const [email, setEmail] = useState('');
     const [describe, setDescribe] = useState('');
     const [address, setAddress] = useState('');
 
     const validateInputs = () => {
         if (name.length < 10) return 'Tên ứng viên phải tối thiểu 10 ký tự';
-        if (id.length < 8) return 'Mã số ứng viên tối thiểu 8 ký tự';
+        if (code.length < 8) return 'Mã số ứng viên tối thiểu 8 ký tự';
         if (!email.includes('@')) return 'Email phải có ký tự @';
         if (describe === '') return 'Mô tả kinh nghiệm không được bỏ trống';
         return null;
@@ -29,7 +29,7 @@ export default function Screen3({ navigation }) {
         try {
             await axios.post('https://664ae5a2a300e8795d4353f1.mockapi.io/students', {
                 name,
-                id,
+                code,
                 email,
                 describe,
                 address,
@@ -69,8 +69,8 @@ export default function Screen3({ navigation }) {
                 <Title>Mã số ứng viên:</Title>
                 <TextInput
                     placeholder="Mã số ứng viên"
-                    value={id}
-                    onChangeText={setId}
+                    value={code}
+                    onChangeText={setCode}
                     style={{ borderColor: 'gray', borderWidth: 1, marginBottom: 10, padding: 5 }}
                 />
                 <Title>Email:</Title>
